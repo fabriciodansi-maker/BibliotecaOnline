@@ -3,7 +3,7 @@
 ## Integrantes
 
 * Emilio Del Puppo Neto
-* Fabricio Dansi
+* Fabrício Dansi
 * Lohan Quintino
 
 ## Tema Escolhido
@@ -12,11 +12,11 @@ Biblioteca Online
 
 ## Descrição do Projeto
 
-O projeto consiste em um sistema simples de cadastro e listagem de livros utilizando arquitetura Full Stack.
+O projeto consiste em um sistema simples de gerenciamento de livros utilizando arquitetura Full Stack.
 
-O Front-end foi desenvolvido com HTML, CSS e JavaScript, permitindo ao usuário cadastrar livros e visualizar a lista de livros cadastrados.
+O Front-end foi desenvolvido com HTML, CSS e JavaScript, permitindo ao usuário cadastrar, listar, editar e excluir livros por meio de uma interface simples e intuitiva.
 
-O Back-end foi desenvolvido com Node.js, Express e TypeScript, disponibilizando endpoints para consulta e cadastro de livros.
+O Back-end foi desenvolvido com Node.js, Express e TypeScript, disponibilizando endpoints para consulta, cadastro, edição e exclusão de livros.
 
 Os dados são armazenados temporariamente em memória durante a execução da aplicação.
 
@@ -39,6 +39,8 @@ Os dados são armazenados temporariamente em memória durante a execução da ap
 
 * Cadastrar livros
 * Listar livros cadastrados
+* Editar livros cadastrados
+* Excluir livros cadastrados
 * Comunicação entre cliente e servidor utilizando Fetch API
 * Armazenamento temporário dos dados em memória
 
@@ -59,10 +61,13 @@ BibliotecaOnline
     * interfaces
 
       * ILivro.ts
+
     * data
 
       * livros.ts
+
     * server.ts
+
   * package.json
   * package-lock.json
   * tsconfig.json
@@ -111,12 +116,26 @@ em um navegador web de sua preferência.
 
 ### 5. Utilização do Sistema
 
+#### Cadastrar Livro
+
 1. Preencha o campo **Título**.
 2. Preencha o campo **Autor**.
 3. Informe o **Ano de Publicação**.
 4. Clique no botão **Cadastrar**.
 5. O livro será enviado para o servidor através da API.
 6. A lista de livros será atualizada automaticamente na tela.
+
+#### Editar Livro
+
+1. Clique no botão **Editar** ao lado do livro desejado.
+2. Os dados do livro serão carregados nos campos do formulário.
+3. Altere as informações desejadas.
+4. Clique novamente no botão **Cadastrar** para salvar as alterações.
+
+#### Excluir Livro
+
+1. Clique no botão **Excluir** ao lado do livro desejado.
+2. O livro será removido imediatamente da lista.
 
 ## Endpoints da API
 
@@ -125,6 +144,8 @@ em um navegador web de sua preferência.
 **GET /livros**
 
 Retorna todos os livros cadastrados.
+
+---
 
 ### Cadastrar Livro
 
@@ -142,6 +163,47 @@ Recebe um objeto JSON contendo:
 
 e adiciona o livro à lista armazenada em memória.
 
+---
+
+### Atualizar Livro
+
+**PUT /livros/:id**
+
+Atualiza os dados de um livro existente.
+
+Exemplo:
+
+```http
+PUT /livros/1
+```
+
+Recebe um objeto JSON contendo:
+
+```json
+{
+  "titulo": "Dom Casmurro - Atualizado",
+  "autor": "Machado de Assis",
+  "anoPublicacao": 1900
+}
+```
+
+e atualiza as informações do livro correspondente.
+
+---
+
+### Excluir Livro
+
+**DELETE /livros/:id**
+
+Remove um livro da lista utilizando seu identificador.
+
+Exemplo:
+
+```http
+DELETE /livros/1
+```
+
+O livro correspondente ao identificador informado será removido da lista armazenada em memória.
 ## Referências Bibliográficas
 
 * ADRIANO, Thiago da Silva. Guia Prático de TypeScript.
